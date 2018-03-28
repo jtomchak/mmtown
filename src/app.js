@@ -20,6 +20,16 @@ $(document).ready(function() {
     });
   }
 
+  const fetchMovieDetails = movieId => {
+    $.ajax({
+      url: `https://api.themoviedb.org/3/movie/${movieId}?api_key=2434d246ec60c162a86db597467ef4ed`,
+      success: payload => {
+        //now we hopfully have our movie details!
+        console.log(payload);
+      }
+    });
+  };
+
   let containerDiv = $("<div>").attr("class", "container");
   let rowDiv = $("<div>").attr("class", "row");
 
@@ -38,7 +48,7 @@ $(document).ready(function() {
           $("<button>")
             .html("Details")
             .attr("class", "btn btn-info")
-            .click(() => console.log(movie.title, movie.id))
+            .click(() => fetchMovieDetails(movie.id))
         );
       //When we click the button, we want to call a function, and have that function
       //go get the movie details for us, this is another Ajax.
