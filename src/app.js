@@ -26,14 +26,22 @@ $(document).ready(function() {
   //Create our function to build and display the posters
   function createPosters(moviesList) {
     moviesList.forEach(function(movie) {
-      let movieColDiv = $("<div>").attr("class", "card col-md-4");
+      let movieColDiv = $("<div>").attr("class", "card col-md-3 m-3");
       let movieImage = $("<img>")
         .attr("src", "https://image.tmdb.org/t/p/w500/" + movie.poster_path)
         .attr("class", "card-img-top");
 
       let posterBody = $("<div>")
         .attr("class", "card-body")
-        .append($("<h5>").html(movie.title));
+        .append($("<h5>").html(movie.title))
+        .append(
+          $("<button>")
+            .html("Details")
+            .attr("class", "btn btn-info")
+            .click(() => console.log(movie.title, movie.id))
+        );
+      //When we click the button, we want to call a function, and have that function
+      //go get the movie details for us, this is another Ajax.
 
       movieColDiv.append(movieImage).append(posterBody);
       rowDiv.append(movieColDiv);
